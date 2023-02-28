@@ -3,8 +3,10 @@ import {ThemeProvider} from 'next-themes'
 
 export default function App({Component, pageProps}) {
   return (
-    <ThemeProvider>
-      <Component {...pageProps} />
-    </ThemeProvider>
+    <>
+      <ThemeProvider enableSystem={false} attribute="class" themes={['blue']}>
+        <Component {...pageProps} />
+      </ThemeProvider>
+    </>
   )
 }
