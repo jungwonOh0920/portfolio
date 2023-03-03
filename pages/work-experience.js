@@ -6,12 +6,14 @@ const workExperience = ({result}) => {
     console.log('result: ', result);
     return (
         <div>
-            <h1>workExperience</h1>
-            {
-                result.map((proj) => (
-                    <ProjectItem project={proj} key={proj.id} />
-                ))
-            }
+            <h1>Work Experience</h1>
+            <div className='flex flex-wrap justify-between w-full bg-red-300'>
+                {
+                    result.map((proj) => (
+                        <ProjectItem project={proj} key={proj.id} />
+                    ))
+                }
+            </div>
         </div>
     )
 }
