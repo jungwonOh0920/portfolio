@@ -3,11 +3,10 @@ import {TOKEN, DATABASE_ID} from '../config/index.js'
 import ProjectItem from '../components/project-item'
 
 const workExperience = ({result}) => {
-    console.log('result: ', result);
     return (
         <div>
             <h1>Work Experience</h1>
-            <div className='flex flex-wrap justify-between w-full bg-red-300'>
+            <div className='grid grid-cols-1 md:grid-cols-2 gap-2 p-2'>
                 {
                     result.map((proj) => (
                         <ProjectItem project={proj} key={proj.id} />
