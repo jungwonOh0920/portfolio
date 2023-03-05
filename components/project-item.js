@@ -19,7 +19,10 @@ const projectItem = ({project}) => {
                 </div>
             }
 
-            <h1>{project.properties.Name.title[0].plain_text}</h1>
+            <h1 className='font-semibold text-lg'>{project.properties.Name.title[0].plain_text}</h1>
+            <p>Position: {project.properties.Position.rich_text[0].plain_text}</p>
+            <p className='text-xs'>{project.properties.WorkPeriod.date.start} &#126; {project.properties.WorkPeriod.date.end}</p>
+            <ul className='list-disc pl-4 text-sm'><li>{project.properties.Description.rich_text[0].plain_text.split("• ")[1]}</li></ul>
             <div className='flex flex-wrap gap-1 mt-2'>
                 {
                     project.properties.Tags.multi_select.map((tag) => (
@@ -27,7 +30,6 @@ const projectItem = ({project}) => {
                     ))
                 }
             </div>
-
         </div>
     )
 }

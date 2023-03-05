@@ -1,5 +1,6 @@
 import React from 'react'
 import Animation from './animation'
+import Link from 'next/link'
 
 const Hero = () => {
     return (
@@ -11,7 +12,9 @@ const Hero = () => {
                     </h1>
                     <p className="mb-8 leading-relaxed">Welcome to my Portfolio website. This will show you who I am, what I'd like to do, and what vision I have as a software engineer. My interests are in Front End Engineering, and I love to create beautiful and performant products with delightful user experiences. Let's take a look at my background and please feel free to ask me any questions.</p>
                     <div className="flex justify-center">
-                        <button className="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">See my experiences</button>
+                        <Link href='/work-experience'>
+                            <span className="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">See my experiences</span>
+                        </Link>
                     </div>
                 </div>
                 <div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
