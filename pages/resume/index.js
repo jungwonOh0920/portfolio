@@ -16,6 +16,8 @@ const resume = () => {
                 <Link href='https://www.linkedin.com/in/jayoh1/' target='_blank' rel="noopenner noreferrer">www.linkedin.com/in/jayoh1</Link>
                 <br />
                 <a href='https://github.com/jungwonOh0920' target='_blank' rel="noopenner noreferrer">www.github.com/jungwonOh0920</a>
+                <br />
+                <Link href='https://portfolio-jungwonoh0920.vercel.app/' target='_blank'>portfolio-jungwonoh0920.vercel.app</Link>
             </div>
             <div className='column1'>
                 <h2>Work experiences</h2>
