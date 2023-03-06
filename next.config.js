@@ -7,9 +7,6 @@ const nextConfig = {
       's3.us-west-2.amazonaws.com',
       'images.unsplash.com'
     ]
-  },
-  experimental: {
-    nftTracing: true
   }
 }
 
