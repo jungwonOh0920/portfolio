@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 
-const pill = ({tagInfo}) => {
+const Pill = ({tagInfo}) => {
     const [color, setColor] = useState();
 
     useEffect(() => {
@@ -14,4 +14,4 @@ const pill = ({tagInfo}) => {
     )
 }
 
-export default pill
+export default Pill

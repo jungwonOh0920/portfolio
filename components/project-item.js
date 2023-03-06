@@ -2,11 +2,10 @@ import React, {useEffect, useState} from 'react'
 import Image from 'next/image'
 import Pill from './pill'
 
-const projectItem = ({project}) => {
+const ProjectItem = ({project}) => {
     const [url, setUrl] = useState()
 
     useEffect(() => {
-        console.log(project);
         project.cover.external ? setUrl(project.cover.external.url) :
             setUrl(project.cover.file.url)
     }, [])
@@ -26,7 +25,7 @@ const projectItem = ({project}) => {
             <div className='flex flex-wrap gap-1 mt-2'>
                 {
                     project.properties.Tags.multi_select.map((tag) => (
-                        <Pill tagInfo={tag} />
+                        <Pill tagInfo={tag} key={tag.id} />
                     ))
                 }
             </div>
@@ -34,4 +33,4 @@ const projectItem = ({project}) => {
     )
 }
 
-export default projectItem
+export default ProjectItem
