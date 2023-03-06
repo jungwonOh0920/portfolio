@@ -21,8 +21,11 @@ const Header = () => {
                     <Link href='/work-experience'>
                         <span className="mr-5 hover:text-gray-900 dark:hover:text-indigo-500">Work Experiences</span>
                     </Link>
-                    <Link href='/contacts'>
+                    {/* <Link href='/contacts'>
                         <span className="mr-5 hover:text-gray-900 dark:hover:text-indigo-500">Contacts</span>
+                    </Link> */}
+                    <Link href='/resume'>
+                        <span className="mr-5 hover:text-gray-900 dark:hover:text-indigo-500">Resume</span>
                     </Link>
                 </nav>
                 <ThemeButton />

@@ -1,0 +1,93 @@
+h1,
+h2,
+h3,
+h4 {
+    margin-bottom: 0;
+}
+
+.resume-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 16px;
+    margin-bottom: 100px;
+}
+
+.description-list {
+    list-style-type: disc;
+    text-align: start;
+    padding-left: 16px;
+}
+
+.column1 {
+    position: relative;
+}
+
+.column1 h2 {
+    text-transform: uppercase;
+}
+
+.column1:not(:first-of-type)::after {
+    content: '';
+    width: 16px;
+    height: 2px;
+    background-color: rgb(99 102 241 / 1);
+    position: absolute;
+    top: -4px;
+}
+
+
+.column2 {
+    border-top: solid 2px rgb(99 102 241 / 1);
+    grid-column-start: 2;
+    grid-column-end: 5;
+    text-align: end;
+}
+
+@media screen and (max-width: 767px) {
+    .resume-container {
+        display: flex;
+        flex-direction: column;
+        padding: 0 8px;
+    }
+
+    .column1 {
+        text-align: center;
+        border-top: solid 2px rgb(99 102 241 / 1);
+    }
+
+    .column2 {
+        text-align: center;
+        border-top: none;
+    }
+
+    .column2.project .link-container {
+        flex: 1;
+        text-align: right;
+    }
+
+    .column2 h3:last-of-type {
+        text-align: left;
+    }
+
+    .column2 h4:last-of-type {
+        text-align: right;
+    }
+
+    .column1:not(:first-of-type)::after {
+        display: none;
+    }
+
+    h3,
+    h4 {
+        font-weight: bold;
+        font-size: 14px;
+    }
+
+    li {
+        font-size: 12px;
+    }
+
+    .description-list {
+        margin-top: 4px;
+    }
+}
