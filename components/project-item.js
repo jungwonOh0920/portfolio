@@ -10,11 +10,15 @@ const ProjectItem = ({project}) => {
             setUrl(project.cover.file.url)
     }, [])
 
+    useEffect(() => {
+        console.log('url: ', url);
+    }, [url])
+
     return (
         <div className='p-3 border-2 rounded-md w-full h-80 overflow-hidden flex flex-col'>
             {
-                url && <div className='relative h-1/2 -mr-3 -ml-3 -mt-3'>
-                    <Image src={url} alt='company-image' fill className='object-cover' />
+                <div className='relative h-1/2 -mr-3 -ml-3 -mt-3'>
+                    <Image src={project.cover.external ? project.cover.external.url : project.cover.file.url} alt='company-image' fill className='object-cover' priority={true} />
                 </div>
             }
 

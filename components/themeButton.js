@@ -3,9 +3,7 @@ import {useTheme} from 'next-themes'
 
 const ThemeButton = () => {
     const {theme, setTheme} = useTheme()
-    useEffect(() => {
-        console.log('theme!: ', theme);
-    }, [theme])
+
     return (
         <button className="inline-flex items-center bg-gray-100 dark:bg-slate-600 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 dark:text-yellow-300 hover:text-orange-500 dark:hover:text-orange-500 rounded text-base mt-4 md:mt-0"
             onClick={() => {setTheme(theme === 'light' ? 'dark' : 'light')}}
