@@ -3,17 +3,6 @@ import Image from 'next/image'
 import Pill from './pill'
 
 const ProjectItem = ({project}) => {
-    const [url, setUrl] = useState()
-
-    useEffect(() => {
-        project.cover.external ? setUrl(project.cover.external.url) :
-            setUrl(project.cover.file.url)
-    }, [])
-
-    useEffect(() => {
-        console.log('url: ', url);
-    }, [url])
-
     return (
         <div className='p-3 border-2 rounded-md w-full h-80 overflow-hidden flex flex-col'>
             {

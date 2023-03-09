@@ -2,6 +2,5 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
-/* .bg-primary {
-    @apply bg-white dark: bg-slate-800
-} */
+@import '../pages/resume/resume.scss';
+@import '../components/carousel/carousel.scss';
