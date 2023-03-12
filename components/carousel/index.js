@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import {TOKEN, NOTION_TESTIMONIALS_DATABASE_ID} from '../../config/index.js'
 
 const Carousel = () => {
     const data = [1, 2, 3, 4, 5]
@@ -22,7 +23,7 @@ const Carousel = () => {
         <div className='carousel-container'>
             {
                 data.map((item, idx) => {
-                    return <h1 className='carousel-item' key={idx} style={{transform: `translate(-${currentIdx * 100}%)`}}></h1>
+                    return <h1 className='carousel-item' key={idx} style={{transform: `translate(-${currentIdx * 100}%)`}}>{item}</h1>
                 })
             }
         </div>

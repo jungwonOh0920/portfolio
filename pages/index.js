@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import {Inter} from 'next/font/google'
 import Hero from '../components/hero'
-
+import {TOKEN, NOTION_TESTIMONIALS_DATABASE_ID} from '../config/index.js'
 const inter = Inter({subsets: ['latin']})
 
 export default function Home() {
@@ -16,4 +16,33 @@ export default function Home() {
       <Hero />
     </>
   )
+}
+
+export async function getStaticProps() {
+  console.log('token: ', TOKEN);
+  const options = {
+    method: 'POST',
+    headers: {
+      accept: 'application/json',
+      'Notion-Version': '2022-06-28',
+      'content-type': 'application/json',
+      Authorization: `Bearer ${TOKEN}`
+    },
+    // body: JSON.stringify({
+    //   sorts: [{
+    //     "property": "WorkPeriod",
+    //     "direction": "descending"
+    //   }],
+    //   page_size: 100
+    // })
+  };
+  console.log('carousel!!!!!!: ', NOTION_TESTIMONIALS_DATABASE_ID);
+  const res = await fetch('https://api.notion.com/v1/databases/f7d46dbc9ac342eb8a6aca9da1bd874c/query', options)
+
+  const data = await res.json()
+  const result = data.results
+  console.log('result: ', result)
+  return {
+    props: {}, // will be passed to the page component as props
+  }
 }
