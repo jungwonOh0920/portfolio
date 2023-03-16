@@ -24,8 +24,7 @@ const Carousel = ({carouselData}) => {
     return (
         <div className='carousel-container'>
             {
-                carouselData &&
-                carouselData.map((item, idx) => {
+                carouselData && carouselData.map((item, idx) => {
                     return <div className='carousel-item-wrapper' key={idx} style={{transform: `translate(-${currentIdx * 100}%)`}}>
                         <CarouselItem item={item} />
                     </div>
