@@ -1,29 +1,33 @@
 import React, {useState, useEffect} from 'react'
-import {TOKEN, NOTION_TESTIMONIALS_DATABASE_ID} from '../../config/index.js'
+import CarouselItem from './CarouselItem'
 
-const Carousel = () => {
-    const data = [1, 2, 3, 4, 5]
+const Carousel = ({carouselData}) => {
     const [currentIdx, setCurrentIdx] = useState(0)
 
     const infiniteScroll = () => {
-        if (currentIdx === data.length - 1) {
+        if (currentIdx === carouselData.length - 1) {
             return setCurrentIdx(0)
         }
         return setCurrentIdx(currentIdx + 1)
     }
-
+    useEffect(() => {
+        console.log('carousel: ', carouselData);
+    }, [])
     useEffect(() => {
         const interval = setInterval(() => {
             infiniteScroll()
-        }, 3000)
+        }, 15000)
         return () => clearInterval(interval)
     })
 
     return (
         <div className='carousel-container'>
             {
-                data.map((item, idx) => {
-                    return <h1 className='carousel-item' key={idx} style={{transform: `translate(-${currentIdx * 100}%)`}}>{item}</h1>
+                carouselData &&
+                carouselData.map((item, idx) => {
+                    return <div className='carousel-item-wrapper' key={idx} style={{transform: `translate(-${currentIdx * 100}%)`}}>
+                        <CarouselItem item={item} />
+                    </div>
                 })
             }
         </div>

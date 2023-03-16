@@ -1,14 +1,14 @@
-import React, {useState, useEffect} from 'react'
-import {TOKEN, DATABASE_ID, NOTION_TESTIMONIALS_DATABASE_ID} from '../config/index.js'
+import React from 'react'
+import {TOKEN, DATABASE_ID} from '../config/index.js'
 import ProjectItem from '../components/project-item'
 
 const workExperience = ({result}) => {
     return (
         <div className='max-w-5xl mx-auto'>
             <h1 className='font-bold text-xl pl-2'>Work Experience</h1>
-            {/* <p>{result.properties.Position.rich_text[0].plain_text}</p> */}
             <div className='grid grid-cols-1 md:grid-cols-2 gap-2 p-2'>
                 {
+                    result &&
                     result.map((proj) => (
                         <ProjectItem project={proj} key={proj.id} />
                     ))
@@ -37,11 +37,11 @@ export async function getStaticProps() {
             page_size: 100
         })
     };
-    console.log('work expereicne!!!', NOTION_TESTIMONIALS_DATABASE_ID);
+
     const res = await fetch(`https://api.notion.com/v1/databases/${DATABASE_ID}/query`, options)
 
     const data = await res.json()
-    const result = data.results
+    const result = data.results || null
 
     return {
         props: {result}, // will be passed to the page component as props
