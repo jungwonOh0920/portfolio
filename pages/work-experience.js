@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react'
-import {TOKEN, DATABASE_ID, NOTION_TESTIMONIALS_DATABASE_ID} from '../config/index.js'
+import React from 'react'
+import {TOKEN, DATABASE_ID} from '../config/index.js'
 import ProjectItem from '../components/project-item'
 
 const workExperience = ({result}) => {
@@ -37,11 +37,11 @@ export async function getStaticProps() {
             page_size: 100
         })
     };
-    console.log('work expereicne!!!', NOTION_TESTIMONIALS_DATABASE_ID);
+
     const res = await fetch(`https://api.notion.com/v1/databases/${DATABASE_ID}/query`, options)
 
     const data = await res.json()
-    const result = data.results
+    const result = JSON.stringify(data.results)
 
     return {
         props: {result}, // will be passed to the page component as props

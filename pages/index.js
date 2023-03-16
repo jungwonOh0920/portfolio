@@ -35,7 +35,7 @@ export async function getStaticProps() {
   const res = await fetch(`https://api.notion.com/v1/databases/${NOTION_TESTIMONIALS_DATABASE_ID}/query`, options)
 
   const data = await res.json()
-  const result = data.results
+  const result = JSON.stringify(data.results)
   return {
     props: {result}, // will be passed to the page component as props
   }
