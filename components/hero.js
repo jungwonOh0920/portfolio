@@ -1,7 +1,6 @@
 import React from 'react'
 import Animation from './animation'
 import Link from 'next/link'
-import Carousel from './carousel/index.js'
 
 const Hero = () => {
     return (
@@ -22,7 +21,6 @@ const Hero = () => {
                     <Animation />
                 </div>
             </div>
-            <Carousel />
         </section>
     )
 }
