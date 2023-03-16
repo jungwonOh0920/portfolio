@@ -6,9 +6,9 @@ const workExperience = ({result}) => {
     return (
         <div className='max-w-5xl mx-auto'>
             <h1 className='font-bold text-xl pl-2'>Work Experience</h1>
-            {/* <p>{result.properties.Position.rich_text[0].plain_text}</p> */}
             <div className='grid grid-cols-1 md:grid-cols-2 gap-2 p-2'>
                 {
+                    result &&
                     result.map((proj) => (
                         <ProjectItem project={proj} key={proj.id} />
                     ))
