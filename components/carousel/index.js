@@ -12,7 +12,8 @@ const Carousel = ({carouselData}) => {
     }
     useEffect(() => {
         console.log('carousel: ', carouselData);
-    }, [])
+    }, [carouselData])
+
     useEffect(() => {
         const interval = setInterval(() => {
             infiniteScroll()

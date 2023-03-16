@@ -1,10 +1,13 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import Head from 'next/head'
 import Hero from '../components/hero'
 import Carousel from '../components/carousel/index.js'
 import {TOKEN, NOTION_TESTIMONIALS_DATABASE_ID} from '../config/index.js'
 
 export default function Home({result}) {
+  useEffect(() => {
+    console.log('result: ', result);
+  })
   return (
     <>
       <Head>
@@ -22,22 +25,27 @@ export default function Home({result}) {
 }
 
 export async function getStaticProps() {
-  const options = {
-    method: 'POST',
-    headers: {
-      accept: 'application/json',
-      'Notion-Version': '2022-06-28',
-      'content-type': 'application/json',
-      Authorization: `Bearer ${TOKEN}`
+  try {
+    const options = {
+      method: 'POST',
+      headers: {
+        accept: 'application/json',
+        'Notion-Version': '2022-06-28',
+        'content-type': 'application/json',
+        Authorization: `Bearer ${TOKEN}`
+      }
+    };
+
+    const res = await fetch(`https://api.notion.com/v1/databases/${NOTION_TESTIMONIALS_DATABASE_ID}/query`, options)
+
+    const data = await res.json()
+    const result = data.results
+    return {
+      props: {result}, // will be passed to the page component as props
     }
-  };
-
-  const res = await fetch(`https://api.notion.com/v1/databases/${NOTION_TESTIMONIALS_DATABASE_ID}/query`, options)
-
-  const data = await res.json()
-  console.log('data: ', data);
-  const result = data.results || ['test']
-  return {
-    props: {result}, // will be passed to the page component as props
+  } catch (err) {
+    return {
+      props: null
+    }
   }
 }
