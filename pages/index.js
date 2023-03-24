@@ -40,8 +40,11 @@ export async function getStaticProps() {
 
     const data = await res.json()
     const result = data.results
-    return {
-      props: {result}, // will be passed to the page component as props
+
+    if (result) {
+      return {
+        props: {result}, // will be passed to the page component as props
+      }
     }
   } catch (err) {
     return {
