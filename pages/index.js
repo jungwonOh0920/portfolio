@@ -5,9 +5,6 @@ import Carousel from '../components/carousel/index.js'
 import {TOKEN, NOTION_TESTIMONIALS_DATABASE_ID} from '../config/index.js'
 
 export default function Home({result}) {
-  useEffect(() => {
-    console.log('result: ', result);
-  })
   return (
     <>
       <Head>

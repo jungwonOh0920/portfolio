@@ -10,9 +10,6 @@ const Carousel = ({carouselData}) => {
         }
         return setCurrentIdx(currentIdx + 1)
     }
-    useEffect(() => {
-        console.log('carousel: ', carouselData);
-    }, [carouselData])
 
     useEffect(() => {
         const interval = setInterval(() => {

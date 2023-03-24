@@ -1,11 +1,8 @@
-import React, {useEffect, useState} from 'react'
+import React from 'react'
 import Image from 'next/image'
 import Pill from './pill'
 
 const ProjectItem = ({project}) => {
-    useEffect(() => {
-        console.log('proj: ', project);
-    })
     return (
         <div className='p-3 border-2 rounded-md w-full h-80 overflow-hidden flex flex-col'>
             {
