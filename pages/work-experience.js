@@ -20,7 +20,7 @@ const workExperience = ({result}) => {
 
 export default workExperience
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
     const options = {
         method: 'POST',
         headers: {
