@@ -21,7 +21,7 @@ export default function Home({result}) {
   )
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   try {
     const options = {
       method: 'POST',
