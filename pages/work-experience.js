@@ -14,7 +14,8 @@ const workExperience = ({workExperienceData, personalProjectsData}) => {
                 <h2 className='font-bold text-xl pl-2'>Work Experience</h2>
                 <div className='grid grid-cols-1 md:grid-cols-2 gap-2 p-2'>
                     {
-                        workExperienceData && workExperienceData.results.map((work, idx) => (< ProjectItem project={work} type={workExperienceData.type} key={idx} />))
+                        (workExperienceData.results && workExperienceData.results.length > 0) ?
+                            workExperienceData.results.map((work, idx) => (< ProjectItem project={work} type={workExperienceData.type} key={idx} />)) : ''
                     }
                 </div>
             </div>
@@ -22,7 +23,7 @@ const workExperience = ({workExperienceData, personalProjectsData}) => {
                 <h2 className='font-bold text-xl pl-2'>Personal Projects </h2>
                 <div className='grid grid-cols-1 md:grid-cols-2 gap-2 p-2'>
                     {
-                        personalProjectsData && personalProjectsData.results.map((work, idx) => (< ProjectItem project={work} type={personalProjectsData.type} key={idx} />))
+                        (personalProjectsData.results && personalProjectsData.results.length > 0) ? personalProjectsData.results.map((work, idx) => (< ProjectItem project={work} type={personalProjectsData.type} key={idx} />)) : ''
                     }
                 </div>
             </div>
