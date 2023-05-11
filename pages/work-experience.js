@@ -14,7 +14,7 @@ const workExperience = ({workExperienceData, personalProjectsData}) => {
                 <h2 className='font-bold text-xl pl-2'>Work Experience</h2>
                 <div className='grid grid-cols-1 md:grid-cols-2 gap-2 p-2'>
                     {
-                        workExperienceData.results.map((work, idx) => (< ProjectItem project={work} type={workExperienceData.type} key={idx} />))
+                        workExperienceData && workExperienceData.results.map((work, idx) => (< ProjectItem project={work} type={workExperienceData.type} key={idx} />))
                     }
                 </div>
             </div>
@@ -22,7 +22,7 @@ const workExperience = ({workExperienceData, personalProjectsData}) => {
                 <h2 className='font-bold text-xl pl-2'>Personal Projects </h2>
                 <div className='grid grid-cols-1 md:grid-cols-2 gap-2 p-2'>
                     {
-                        personalProjectsData.results.map((work, idx) => (< ProjectItem project={work} type={personalProjectsData.type} key={idx} />))
+                        personalProjectsData && personalProjectsData.results.map((work, idx) => (< ProjectItem project={work} type={personalProjectsData.type} key={idx} />))
                     }
                 </div>
             </div>
@@ -68,6 +68,6 @@ export async function getServerSideProps() {
             props: {workExperienceData, personalProjectsData}, // will be passed to the page component as props
         }
     } catch (err) {
-        (err) => {console.log(err)}
+        (err) => {console.log('err: ', err)}
     }
 }
