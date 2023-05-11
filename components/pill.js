@@ -4,7 +4,7 @@ const Pill = ({tagInfo}) => {
     const [color, setColor] = useState();
 
     useEffect(() => {
-        tagInfo && setColor('bg-' + tagInfo.color + '-400')
+        setColor('bg-' + tagInfo.color + '-400')
     }, [])
 
     return (
