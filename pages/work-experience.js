@@ -1,18 +1,24 @@
-import React from 'react'
-import {TOKEN, DATABASE_ID} from '../config/index.js'
+import React, {useEffect} from 'react'
+import {TOKEN, DATABASE_ID, NOTION_PERSONAL_PROJECTS_DATABASE_ID} from '../config/index.js'
 import ProjectItem from '../components/project-item'
 
-const workExperience = ({result}) => {
+const workExperience = ({workExperienceData, personalProjectsData}) => {
+    useEffect(() => {
+        console.log('workExperienceData: ', workExperienceData)
+        console.log('personalProjectsData', personalProjectsData);
+    }, [workExperienceData, personalProjectsData])
     return (
         <div className='max-w-5xl mx-auto'>
             <h1 className='font-bold text-xl pl-2'>Work Experience</h1>
             <div className='grid grid-cols-1 md:grid-cols-2 gap-2 p-2'>
-                {
+                {/* <div>{personalProjectsData.id}</div> */}
+                {/* {
                     result &&
                     result.map((proj) => (
                         <ProjectItem project={proj} key={proj.id} />
                     ))
-                }
+                } */}
+
             </div>
         </div>
     )
@@ -21,7 +27,7 @@ const workExperience = ({result}) => {
 export default workExperience
 
 export async function getServerSideProps() {
-    const options = {
+    const defaultOptions = {
         method: 'POST',
         headers: {
             accept: 'application/json',
@@ -29,6 +35,9 @@ export async function getServerSideProps() {
             'content-type': 'application/json',
             Authorization: `Bearer ${TOKEN}`
         },
+    }
+    const WorkExperienceOptions = {
+        ...defaultOptions,
         body: JSON.stringify({
             sorts: [{
                 "property": "WorkPeriod",
@@ -38,12 +47,15 @@ export async function getServerSideProps() {
         })
     };
 
-    const res = await fetch(`https://api.notion.com/v1/databases/${DATABASE_ID}/query`, options)
-
-    const data = await res.json()
-    const result = data.results
-
-    return {
-        props: {result}, // will be passed to the page component as props
+    try {
+        let [workExperienceData, personalProjectsData] = await Promise.all([
+            fetch(`https://api.notion.com/v1/databases/${DATABASE_ID}/query`, WorkExperienceOptions).then(res => res.json()),
+            fetch(`https://api.notion.com/v1/databases/${NOTION_PERSONAL_PROJECTS_DATABASE_ID}/query`, defaultOptions).then(res => res.json())
+        ])
+        return {
+            props: {workExperienceData, personalProjectsData}, // will be passed to the page component as props
+        }
+    } catch (err) {
+        (err) => {console.log(err)}
     }
 }
