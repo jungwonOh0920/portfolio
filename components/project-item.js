@@ -36,8 +36,8 @@ const ProjectItem = ({project, type}) => {
                         :
                         <>
                             {
-                                project.properties.Description.rich_text[0].plain_text.split("• ").slice(1).map((description) => (
-                                    <li>{description}</li>
+                                project.properties.Description.rich_text[0].plain_text.split("• ").slice(1).map((description, idx) => (
+                                    <li key={idx}>{description}</li>
                                 )
                                 )
                             }
