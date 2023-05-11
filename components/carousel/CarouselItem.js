@@ -1,10 +1,7 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import Image from 'next/image'
 
 const CarouselItem = ({item}) => {
-    useEffect(() => {
-        console.log('url: ', item.properties.Avatar.files[0].file.url)
-    }, [])
     return (
         <div>
             <div className='rounded-full w-24 h-24 mx-auto overflow-hidden relative'>

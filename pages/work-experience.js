@@ -1,24 +1,30 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import {TOKEN, DATABASE_ID, NOTION_PERSONAL_PROJECTS_DATABASE_ID} from '../config/index.js'
 import ProjectItem from '../components/project-item'
 
-const workExperience = ({workExperienceData, personalProjectsData}) => {
-    useEffect(() => {
-        console.log('workExperienceData: ', workExperienceData)
-        console.log('personalProjectsData', personalProjectsData);
-    }, [workExperienceData, personalProjectsData])
-    return (
-        <div className='max-w-5xl mx-auto'>
-            <h1 className='font-bold text-xl pl-2'>Work Experience</h1>
-            <div className='grid grid-cols-1 md:grid-cols-2 gap-2 p-2'>
-                {/* <div>{personalProjectsData.id}</div> */}
-                {/* {
-                    result &&
-                    result.map((proj) => (
-                        <ProjectItem project={proj} key={proj.id} />
-                    ))
-                } */}
+export const projectType = {
+    work: 'work',
+    personal: 'personal'
+}
 
+const workExperience = ({workExperienceData, personalProjectsData}) => {
+    return (
+        <div className='max-w-5xl mx-auto mt-8 space-y-8'>
+            <div>
+                <h2 className='font-bold text-xl pl-2'>Work Experience</h2>
+                <div className='grid grid-cols-1 md:grid-cols-2 gap-2 p-2'>
+                    {
+                        workExperienceData.results.map((work, idx) => (< ProjectItem project={work} type={workExperienceData.type} key={idx} />))
+                    }
+                </div>
+            </div>
+            <div>
+                <h2 className='font-bold text-xl pl-2'>Personal Projects </h2>
+                <div className='grid grid-cols-1 md:grid-cols-2 gap-2 p-2'>
+                    {
+                        personalProjectsData.results.map((work, idx) => (< ProjectItem project={work} type={personalProjectsData.type} key={idx} />))
+                    }
+                </div>
             </div>
         </div>
     )
@@ -27,6 +33,8 @@ const workExperience = ({workExperienceData, personalProjectsData}) => {
 export default workExperience
 
 export async function getServerSideProps() {
+
+
     const defaultOptions = {
         method: 'POST',
         headers: {
@@ -52,6 +60,10 @@ export async function getServerSideProps() {
             fetch(`https://api.notion.com/v1/databases/${DATABASE_ID}/query`, WorkExperienceOptions).then(res => res.json()),
             fetch(`https://api.notion.com/v1/databases/${NOTION_PERSONAL_PROJECTS_DATABASE_ID}/query`, defaultOptions).then(res => res.json())
         ])
+
+        workExperienceData.type = projectType.work;
+        personalProjectsData.type = projectType.personal;
+
         return {
             props: {workExperienceData, personalProjectsData}, // will be passed to the page component as props
         }
