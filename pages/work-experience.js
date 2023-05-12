@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react'
-import {TOKEN, DATABASE_ID, NOTION_PERSONAL_PROJECTS_DATABASE_ID} from '../config/index.js'
+import {TOKEN, DATABASE_ID, PERSONAL_PROJECTS_DATABASE_ID} from '../config/index.js'
 import ProjectItem from '../components/project-item'
 
 export const projectType = {
@@ -66,7 +66,7 @@ export async function getStaticProps() {
 
     let [workExperienceData, personalProjectsData] = await Promise.all([
         fetch(`https://api.notion.com/v1/databases/${DATABASE_ID}/query`, defaultOptions).then(async (res) => res.json()),
-        fetch(`https://api.notion.com/v1/databases/de08c37ffa764ce6b6eda21d9c88fbad/query`, defaultOptions).then(async (res) => res.json())
+        fetch(`https://api.notion.com/v1/databases/${PERSONAL_PROJECTS_DATABASE_ID}/query`, defaultOptions).then(async (res) => res.json())
     ])
 
     workExperienceData.type = projectType.work;
