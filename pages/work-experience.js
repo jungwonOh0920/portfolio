@@ -9,6 +9,9 @@ export const projectType = {
 
 const WorkExperience = ({workExperienceData, personalProjectsData}) => {
     useEffect(() => {
+        console.log('check!!!: ', NOTION_PERSONAL_PROJECTS_DATABASE_ID);
+    }, [])
+    useEffect(() => {
         console.log('personalProjectsData: ', personalProjectsData);
     }, [personalProjectsData])
     return (
