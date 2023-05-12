@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import {TOKEN, DATABASE_ID, NOTION_PERSONAL_PROJECTS_DATABASE_ID} from '../config/index.js'
 import ProjectItem from '../components/project-item'
 
@@ -7,14 +7,17 @@ export const projectType = {
     personal: 'personal'
 }
 
-const workExperience = ({workExperienceData, personalProjectsData}) => {
+const WorkExperience = ({workExperienceData, personalProjectsData}) => {
+    useEffect(() => {
+        console.log('personalProjectsData: ', personalProjectsData);
+    }, [personalProjectsData])
     return (
         <div className='max-w-5xl mx-auto mt-8 space-y-8'>
             <div>
                 <h2 className='font-bold text-xl pl-2'>Work Experience</h2>
                 <div className='grid grid-cols-1 md:grid-cols-2 gap-2 p-2'>
                     {
-                        (workExperienceData.results && workExperienceData.results.length > 0) ?
+                        (workExperienceData && workExperienceData.results && workExperienceData.results.length > 0) ?
                             workExperienceData.results.map((work, idx) => (< ProjectItem project={work} type={workExperienceData.type} key={idx} />)) : ''
                     }
                 </div>
@@ -23,7 +26,7 @@ const workExperience = ({workExperienceData, personalProjectsData}) => {
                 <h2 className='font-bold text-xl pl-2'>Personal Projects </h2>
                 <div className='grid grid-cols-1 md:grid-cols-2 gap-2 p-2'>
                     {
-                        (personalProjectsData.results && personalProjectsData.results.length > 0) ? personalProjectsData.results.map((work, idx) => (< ProjectItem project={work} type={personalProjectsData.type} key={idx} />)) : ''
+                        (personalProjectsData && personalProjectsData.results && personalProjectsData.results.length > 0) ? personalProjectsData.results.map((work, idx) => (< ProjectItem project={work} type={personalProjectsData.type} key={idx} />)) : ''
                     }
                 </div>
             </div>
@@ -31,9 +34,9 @@ const workExperience = ({workExperienceData, personalProjectsData}) => {
     )
 }
 
-export default workExperience
+export default WorkExperience
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
 
 
     const defaultOptions = {
@@ -64,9 +67,13 @@ export async function getServerSideProps() {
 
         workExperienceData.type = projectType.work;
         personalProjectsData.type = projectType.personal;
-
+        console.log('workExperienceData: ', workExperienceData)
+        console.log('personalProjectsData: ', personalProjectsData);
         return {
-            props: {workExperienceData, personalProjectsData}, // will be passed to the page component as props
+            props: {
+                workExperienceData: workExperienceData,
+                personalProjectsData: personalProjectsData
+            }, // will be passed to the page component as props
         }
     } catch (err) {
         (err) => {console.log('err: ', err)}
