@@ -36,9 +36,7 @@ const WorkExperience = ({workExperienceData, personalProjectsData}) => {
 
 export default WorkExperience
 
-export async function getStaticProps() {
-
-
+export async function getServerSideProps() {
     const defaultOptions = {
         method: 'POST',
         headers: {
@@ -59,23 +57,18 @@ export async function getStaticProps() {
         })
     };
 
-    try {
-        let [workExperienceData, personalProjectsData] = await Promise.all([
-            fetch(`https://api.notion.com/v1/databases/${DATABASE_ID}/query`, WorkExperienceOptions).then(res => res.json()),
-            fetch(`https://api.notion.com/v1/databases/${NOTION_PERSONAL_PROJECTS_DATABASE_ID}/query`, defaultOptions).then(res => res.json())
-        ])
+    let [workExperienceData, personalProjectsData] = await Promise.all([
+        fetch(`https://api.notion.com/v1/databases/${DATABASE_ID}/query`, WorkExperienceOptions).then(res => res.json()),
+        fetch(`https://api.notion.com/v1/databases/${NOTION_PERSONAL_PROJECTS_DATABASE_ID}/query`, defaultOptions).then(res => res.json())
+    ])
 
-        workExperienceData.type = projectType.work;
-        personalProjectsData.type = projectType.personal;
-        console.log('workExperienceData: ', workExperienceData)
-        console.log('personalProjectsData: ', personalProjectsData);
-        return {
-            props: {
-                workExperienceData: workExperienceData,
-                personalProjectsData: personalProjectsData
-            }, // will be passed to the page component as props
-        }
-    } catch (err) {
-        (err) => {console.log('err: ', err)}
+    workExperienceData.type = projectType.work;
+    personalProjectsData.type = projectType.personal;
+    console.log('workExperienceData: ', workExperienceData)
+    console.log('personalProjectsData: ', personalProjectsData);
+
+    return {
+        props: {workExperienceData, personalProjectsData}, // will be passed to the page component as props
     }
+
 }
