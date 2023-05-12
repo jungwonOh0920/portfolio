@@ -36,7 +36,7 @@ const WorkExperience = ({workExperienceData, personalProjectsData}) => {
 
 export default WorkExperience
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
     const defaultOptions = {
         method: 'POST',
         headers: {
@@ -45,9 +45,16 @@ export async function getServerSideProps() {
             'content-type': 'application/json',
             Authorization: `Bearer ${TOKEN}`
         },
+        body: JSON.stringify({page_size: 100})
     }
     const WorkExperienceOptions = {
-        ...defaultOptions,
+        method: 'POST',
+        headers: {
+            accept: 'application/json',
+            'Notion-Version': '2022-06-28',
+            'content-type': 'application/json',
+            Authorization: `Bearer ${TOKEN}`
+        },
         body: JSON.stringify({
             sorts: [{
                 "property": "WorkPeriod",
@@ -58,8 +65,8 @@ export async function getServerSideProps() {
     };
 
     let [workExperienceData, personalProjectsData] = await Promise.all([
-        fetch(`https://api.notion.com/v1/databases/${DATABASE_ID}/query`, WorkExperienceOptions).then(res => res.json()),
-        fetch(`https://api.notion.com/v1/databases/${NOTION_PERSONAL_PROJECTS_DATABASE_ID}/query`, defaultOptions).then(res => res.json())
+        fetch(`https://api.notion.com/v1/databases/${DATABASE_ID}/query`, WorkExperienceOptions).then(async (res) => res.json()),
+        fetch(`https://api.notion.com/v1/databases/${NOTION_PERSONAL_PROJECTS_DATABASE_ID}/query`, defaultOptions).then(async (res) => res.json())
     ])
 
     workExperienceData.type = projectType.work;
