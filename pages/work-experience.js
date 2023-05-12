@@ -9,9 +9,6 @@ export const projectType = {
 
 const WorkExperience = ({workExperienceData, personalProjectsData}) => {
     useEffect(() => {
-        console.log('check!!!: ', NOTION_PERSONAL_PROJECTS_DATABASE_ID);
-    }, [])
-    useEffect(() => {
         console.log('personalProjectsData: ', personalProjectsData);
     }, [personalProjectsData])
     return (
@@ -68,7 +65,7 @@ export async function getStaticProps() {
     };
 
     let [workExperienceData, personalProjectsData] = await Promise.all([
-        fetch(`https://api.notion.com/v1/databases/${DATABASE_ID}/query`, WorkExperienceOptions).then(async (res) => res.json()),
+        fetch(`https://api.notion.com/v1/databases/${DATABASE_ID}/query`, defaultOptions).then(async (res) => res.json()),
         fetch(`https://api.notion.com/v1/databases/${NOTION_PERSONAL_PROJECTS_DATABASE_ID}/query`, defaultOptions).then(async (res) => res.json())
     ])
 
