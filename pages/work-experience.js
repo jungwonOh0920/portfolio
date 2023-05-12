@@ -66,7 +66,7 @@ export async function getStaticProps() {
 
     let [workExperienceData, personalProjectsData] = await Promise.all([
         fetch(`https://api.notion.com/v1/databases/${DATABASE_ID}/query`, defaultOptions).then(async (res) => res.json()),
-        fetch(`https://api.notion.com/v1/databases/${NOTION_PERSONAL_PROJECTS_DATABASE_ID}/query`, defaultOptions).then(async (res) => res.json())
+        fetch(`https://api.notion.com/v1/databases/de08c37ffa764ce6b6eda21d9c88fbad/query`, defaultOptions).then(async (res) => res.json())
     ])
 
     workExperienceData.type = projectType.work;
