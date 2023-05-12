@@ -24,7 +24,9 @@ const ProjectItem = ({project, type}) => {
                     :
                     <>
                         <p>Check live demo 🚀</p>
-                        <Link className='hover:underline hover:text-indigo-400' href={project.properties.URL.rich_text[0].plain_text} target='_blank'>{project.properties.URL.rich_text[0].plain_text}</Link>
+                        {
+                            project.properties && <Link className='hover:underline hover:text-indigo-400' href={project.properties.URL.url} target='_blank'>{project.properties.URL.url}</Link>
+                        }
                     </>
             }
 

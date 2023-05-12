@@ -5,7 +5,7 @@ const Pill = ({tagInfo}) => {
 
     useEffect(() => {
         setColor('bg-' + tagInfo.color + '-400')
-    }, [])
+    }, [tagInfo])
 
     return (
         <div className={`rounded-full w-fit px-1 ${color}`}>
